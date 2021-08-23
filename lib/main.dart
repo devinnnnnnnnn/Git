@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  //setmissionEXP
+  //setmissionEXP when press "plus" button
   void setmissionEXP1(){
     setState((){
       EXP1 = EXP1 + 10;
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     while( EXP >= EXP_MAX ){
       EXP = EXP - EXP_MAX;
       level++;
-      EXP_MAX = level*10 + 10;
+      EXP_MAX = level*10 + 20;
       EXP_MAX_Str = "$EXP_MAX ";
     }
 
@@ -113,34 +113,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -182,134 +171,118 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
                   padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                  child: new TextField(
+                    decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                    keyboardType: TextInputType.text,
+                    onChanged: (text) {
+                      mission2 = text;
+                      print("$mission2 ");
+                      changestate();
+                      }, // Only numbers can be entered
+                  ),
+              ),
 
               new Container(
                   padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                  child: new TextField(
+                    decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                    keyboardType: TextInputType.text,
+                    onChanged: (text) {
+                      mission3 = text;
+                      print("$mission3 ");
+                      changestate();
+                      }, // Only numbers can be entered
+                  ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                         size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: mission_accomplished1,
-                          tooltip: '完成任務1請點此',
-                          child: Icon(
-                            Icons.assignment_turned_in,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: mission_accomplished1,
+                        tooltip: '完成任務1請點此',
+                        child: Icon(
+                          Icons.assignment_turned_in,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: mission_accomplished2,
-                          tooltip: '完成任務2請點此',
-                          child: Icon(
-                            Icons.assignment_turned_in,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: mission_accomplished2,
+                        tooltip: '完成任務2請點此',
+                        child: Icon(
+                          Icons.assignment_turned_in,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: mission_accomplished3,
-                          tooltip: '完成任務3請點此',
-                          child: Icon(
-                            Icons.assignment_turned_in,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
-
+                    new FloatingActionButton(
+                        onPressed: mission_accomplished3,
+                        tooltip: '完成任務3請點此',
+                        child: Icon(
+                          Icons.assignment_turned_in,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 0
 
@@ -322,34 +295,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -391,92 +353,79 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
@@ -501,14 +450,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             size: 30,
                           )
                       ),
-
                     ],
-                  )),
-
+                  )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 3
 
@@ -521,34 +468,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -590,92 +526,79 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
@@ -683,7 +606,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: new Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-
                       new FloatingActionButton(
                           onPressed: mission_accomplished2,
                           tooltip: '完成任務2請點此',
@@ -701,15 +623,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             size: 30,
                           )
                       ),
-
-
                     ],
-                  )),
-
+                  )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 1
 
@@ -722,34 +641,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -791,92 +699,79 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
@@ -901,15 +796,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             size: 30,
                           )
                       ),
-
-
                     ],
-                  )),
-
+                  )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 2
 
@@ -922,34 +814,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -991,92 +872,79 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
@@ -1093,12 +961,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                       ),
                     ],
-                  )),
-
+                  )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 1, 2
 
@@ -1111,34 +978,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -1180,92 +1036,79 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
@@ -1282,12 +1125,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                       ),
                     ],
-                  )),
-
+                  )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 2, 3
 
@@ -1300,34 +1142,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -1369,92 +1200,79 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
 
               //mission accomplished
               new Container(
@@ -1471,12 +1289,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                       ),
                     ],
-                  )),
-
+                  )
+              ),
             ],
           ),
         ),
-
       );
     }  // accomplished: 1, 3
 
@@ -1489,34 +1306,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         //progress bar
         body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('LV:',),
-                            Text('$level',),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: FAProgressBar(
-                                currentValue: EXP,
-                                displayText: '/$EXP_MAX_Str',
-                                maxValue: EXP_MAX,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('LV:',),
+              Text('$level',),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: FAProgressBar(
+                  currentValue: EXP,
+                  displayText: '/$EXP_MAX_Str',
+                  maxValue: EXP_MAX,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
 
         drawer: Drawer(
           child: ListView(
@@ -1558,100 +1364,83 @@ class _MyHomePageState extends State<MyHomePage> {
               new Text('EXP: $EXP3'),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission1 = text;
-                          print("$mission1 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務1名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission1 = text;
+                    print("$mission1 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission2 = text;
-                          print("$mission2 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務2名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission2 = text;
+                    print("$mission2 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new TextField(
-                        decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
-                        keyboardType: TextInputType.number,
-                        onChanged: (text) {
-                          mission3 = text;
-                          print("$mission3 ");
-                          changestate();
-                        }, // Only numbers can be entered
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: new TextField(
+                  decoration: new InputDecoration(labelText: "請輸入任務3名稱"),
+                  keyboardType: TextInputType.text,
+                  onChanged: (text) {
+                    mission3 = text;
+                    print("$mission3 ");
+                    changestate();
+                  }, // Only numbers can be entered
+                ),
+              ),
 
               //set the mission EXP
               new Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP1,
-                          tooltip: '每次點擊增加10點EXP:任務一',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                padding: const EdgeInsets.all(10.0),
+                child:new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP1,
+                        tooltip: '每次點擊增加10點EXP:任務一',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP2,
-                          tooltip: '每次點擊增加10點EXP:任務二',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP2,
+                        tooltip: '每次點擊增加10點EXP:任務二',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
 
-                      new FloatingActionButton(
-                          onPressed: setmissionEXP3,
-                          tooltip: '每次點擊增加10點EXP:任務三',
-                          child: Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                      ),
-
-
-                    ],
-                  )),
-
+                    new FloatingActionButton(
+                        onPressed: setmissionEXP3,
+                        tooltip: '每次點擊增加10點EXP:任務三',
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        )
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
-
       );
     }
-
-
   }
 }
